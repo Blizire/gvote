@@ -12,7 +12,12 @@ def _get_prompt(cmd: str) -> str:
     # finds the last index of the ? which indicates the end of prompt
     # +1 to include the question mark.
     prompt_end = cmd.rfind('?') + 1
-    return cmd[prompt_start:prompt_end]
+    prompt = cmd[prompt_start:prompt_end]
+    # ensure no extra spaces are in it
+    prompt = prompt.split()
+    prompt = ' '.join(prompt)
+    # ensure theres a space between the question mark and prompt
+    return prompt
 
 def _get_options(cmd: str) -> list:
     # starting index after the last question mark assuming thats the prompt
